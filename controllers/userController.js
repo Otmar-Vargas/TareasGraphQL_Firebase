@@ -1,15 +1,15 @@
-const userModel = require("../models/userModel");
+const userModel = require('../models/userModel');
 
 const resolvers = {
-    Query: {
-        getUsers: () => userModel.getAll,
-        getUser: (_, {id})=>userModel.getById(id)
-    },
-    Mutation: {
-        createUser: (_, {name, email}) => userModel.create(name,email),
-        updateUser: (_, {id, name, email}) => userModel.update(id,name,email),
-        removeUser: (_, {id}) => userModel.remove(id)
-    }
-}
+  Query: {
+    getUsers:  async () => await userModel.getAll(),
+    getUser:   async (_, { id }) => await userModel.getById(id),
+  },
+  Mutation: {
+    createUser:  async (_, { name, email }) => await userModel.create(name, email),
+    updateUser:  async (_, { id, name, email }) => await userModel.update(id, name, email),
+    removeUser:  async (_, { id }) => await userModel.remove(id),
+  }
+};
 
 module.exports = resolvers;

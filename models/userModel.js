@@ -1,38 +1,38 @@
-const users = [
-    {id:"1", name:"Juan Pérez", email:"juan@example.com"},
-    {id:"2", name:"Maria Alcaraz", email:"maria@example.com"}
-];
+const db = require('../firebase');
+const usersCol = db.collection('users');
 
-const getAll = () => users;
+const getAll = async () => {
+  const snapshot = await usersCol.get();
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};
 
-const getById = (id) => users.find(u => u.id === id);
+const getById = async (id) => {
+  const doc = await usersCol.doc(id).get();
+  if (!doc.exists) return null;
+  return { id: doc.id, ...doc.data() };
+};
 
-// function getById(id) {
-//     const userFind = users.find(u=>u.id===id);
-//     return userFind;
-// }
+const create = async (name, email) => {
+  const ref = await usersCol.add({ name, email });
+  const newDoc = await ref.get();
+  return { id: newDoc.id, ...newDoc.data() };
+};
 
-const create = (name, email) => {
-    const newUser = {
-        id: users.length + 1,
-        name: name,  
-        email
-    }
-    users.push(newUser);
-    return newUser;
-}
+const update = async (id, name, email) => {
+  const updateData = {};
+  if (name    !== undefined) updateData.name  = name;
+  if (email   !== undefined) updateData.email = email;
+  await usersCol.doc(id).update(updateData);
+  const updated = await usersCol.doc(id).get();
+  return { id: updated.id, ...updated.data() };
+};
 
-const update = (id, name, email) => {
-    const user = users.find(u => u.id === id);
-    if(name != undefined) user.name = name;
-    if(email != undefined) user.email = email;
-    return user;
-}
+const remove = async (id) => {
+  const doc = await usersCol.doc(id).get();
+  if (!doc.exists) return null;
+  const data = { id: doc.id, ...doc.data() };
+  await usersCol.doc(id).delete();
+  return data;
+};
 
-const remove = (id) => {
-    const index = users.findIndex(u => u.id === id);
-    if(index === -1) return null;
-    return users.splice(index, 1)[0];
-}
-
-module.exports = {getAll, getById, create, update, remove};
+module.exports = { getAll, getById, create, update, remove };

@@ -1,0 +1,45 @@
+# Dependencias de Node.js
+node_modules/              # Módulos instalados por npm o yarn :contentReference[oaicite:0]{index=0}
+
+# Archivos de log
+logs/                      # Carpeta de logs generada por tu app :contentReference[oaicite:1]{index=1}
+*.log                      # Cualquier archivo con extensión .log :contentReference[oaicite:2]{index=2}
+npm-debug.log*             # Logs de depuración de npm :contentReference[oaicite:3]{index=3}
+yarn-debug.log*            # Logs de depuración de yarn :contentReference[oaicite:4]{index=4}
+yarn-error.log*            # Logs de errores de yarn :contentReference[oaicite:5]{index=5}
+
+# Informes de cobertura de tests
+coverage/                  # Directorio de cobertura de herramientas como Istanbul :contentReference[oaicite:6]{index=6}
+*.lcov                     # Archivos de cobertura generados :contentReference[oaicite:7]{index=7}
+.nyc_output/               # Salida de test coverage de nyc :contentReference[oaicite:8]{index=8}
+
+# Archivos de runtime y cachés
+.pids/                     # Archivos de PID :contentReference[oaicite:9]{index=9}
+*.pid                      # PIDs individuales :contentReference[oaicite:10]{index=10}
+*.seed                     # Seeds de procesos :contentReference[oaicite:11]{index=11}
+*.pid.lock                 # Locks de PID :contentReference[oaicite:12]{index=12}
+.npm/                      # Caché opcional de npm :contentReference[oaicite:13]{index=13}
+.eslintcache               # Caché de ESLint :contentReference[oaicite:14]{index=14}
+
+# Variables de entorno y secretos
+.env                        # Archivo principal de entorno :contentReference[oaicite:15]{index=15}
+.env.*                      # Cualquier variante (e.g., .env.local, .env.test) :contentReference[oaicite:16]{index=16}
+
+# Archivos de configuración de IDEs y editores
+.vscode/                   # Configuración de Visual Studio Code 
+.idea/                     # Configuración de JetBrains 
+*.suo                      # Archivos de solución de Visual Studio :contentReference[oaicite:19]{index=19}
+*.user                     # Configuración de usuario :contentReference[oaicite:20]{index=20}
+
+# Directorios de build y producción
+dist/                      # Archivos compilados/transpilados 
+build/                     # Artefactos de build 
+
+# Dependencias externas y lockfiles secundarias
+package-lock.json          # Lockfile de npm :contentReference[oaicite:23]{index=23}
+yarn.lock                  # Lockfile de yarn :contentReference[oaicite:24]{index=24}
+pnpm-lock.yaml             # Lockfile de pnpm 
+
+# Otros
+.DS_Store                  # Metadatos de macOS 
+Thumbs.db                  # Índices de Windows 
